@@ -87,12 +87,12 @@
     \]
 
     (2) While $||w||>\epsilon$ Do:
-    $$
-        \bm{w}_t \leftarrow \bm{w}_{t-1} - \eta \cdot 2(X^\top X\bm{w}_{t-1} - X^\top Y + \lambda \bm{w}_{t-1})
-    $$
-    where $\epsilon$ is some level of tolerence beyond which we are satisfied with the solution (the gradient is flat enough).\\
 
-    (3) The gradient in (1) is already writen in term of matrices. The regularized risk is given by
+       $$ \bm{w}_t \leftarrow \bm{w}_{t-1} - \eta \cdot 2(X^\top X\bm{w}_{t-1} - X^\top Y + \lambda \bm{w}_{t-1})
+    $$
+    where $\epsilon$ is some level of tolerance beyond which we are satisfied with the solution (the gradient is flat enough).\\
+
+    (3) The gradient in (1) is already written in term of matrices. The regularized risk is given by
     $$
         \hat{R} = (X\bm{w}-Y)(X\bm{w}-\bm{t})^\top + \lambda ||\bm{w}||^2
     $$
@@ -114,7 +114,7 @@
 
     (1) $\tilde{f}_k (x)=b + \sum_{i=1}^k w_i x^i = b + \bm{w}^\top \phi_k(x)$\\
 
-    (2) $b$ is a scalar and $w_1,...,w_k$ are also scalars and the coefficient of the polynomial terms.\\
+    (2) $b$ is a scalar and $w_1,...,w_k$ are also scalars and the coefficient of the polynomial terms. Therefore dimension $d=1$ we will have $k+1$ parameters\\
     
     (3) $\phi_1(x)=x$ so this one is a linear regression. \\
 
@@ -124,6 +124,8 @@
 
     $\tilde{f}_3 (\bm{x})=b + w_1 x_1 + w_2 x_2 + w_3 x_1^2 + w_4 x_2^2 + w_5 x_1 x_2 + w_6 x_1^2x_2 + w_7 x_1x_2^2 + w_8x_1^3 + w_9x_2^3$
 
-    (4) For each powers $1,2,...,k$ we need $d$ coefficients, i.e. $dk$ parameters. We also need coefficient for the different combination of inputs (eg $x_1x_2$). For each 
+    (4) For each powers $1,2,...,k$ we need $d$ coefficients, i.e. $dk$ parameters. We also need coefficient for the different combination of inputs (eg $x_1x_2$). IF $p$ is the degree of polynomial up to $k$, then one can prove the complexity by induction which it equal to:
+    
+    $$\sum_{p=1}^{k} \binom{d-1+p}{p}.$$
 
 \end{document}
