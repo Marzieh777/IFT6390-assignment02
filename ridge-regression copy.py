@@ -9,7 +9,7 @@ import numpy as np
 from numpy import pi, exp, log
 import matplotlib.pyplot as plt
 from sklearn.linear_model import Ridge
-import math
+
 
 #Question1
 class RidgeRegression(object):
@@ -74,7 +74,9 @@ class RidgeRegression(object):
         self.Y_hat=np.array(self.Y_hat)
         #self.cost = math.sqrt(sum((self.Y-self.Y_hat)**2))
         self.cost=np.square(self.Y - self.Y_hat).mean()
-        return(self.cost)
+        print(self.cost)
+        
+
     def result(self):
         return self
     
@@ -93,9 +95,30 @@ class RidgeRegression(object):
         ax.legend()
         plt.show()
         
-    
+    def plot2(self,lambdas,x,y,w,z):
+        losses=[]
+        self.lambdas=lambdas
+        self.x=x
+        self.y=y
+        self.w=w
+        self.z=z
         
-
+        for lmbd in lambdas:
+            
+        
+            self.initialize(lmbd,eta)
+            self.calc_w(x,y) 
+            
+            self.gradientDesc(x,y, eta, epsilon,n_iter, w_init)
+            self.predict(b,w)
+            self.lossfunc(z)
+            losses.append(self.cost)
+        
+        plt.plot(self.lambdas,losses)
+        plt.xlabel('Lambda')
+        plt.ylabel('Loss')
+        plt.show()
+                
 #%%%
 #Question 2
 X_train=np.random.uniform(low=-5, high=5, size=15) 
@@ -140,9 +163,6 @@ for lmbd in lambdas:
     RR.gradientDesc(X_train,Y_train, eta, epsilon,n_iter, w_init)
     RR.predict(b,X_train)
     result = RR.result()
-    
-    #print(result.w_calc)
-    #print (result.w)
     RR.plot()
     
 #def question5():       
@@ -154,27 +174,25 @@ Y_test=np.sin(X_test)+0.3*X_test-1
 
 lambdas=[0.0001, 0.001, 0.01, 0.1, 1, 10, 100] 
 losses=[]
-for lmbd in lambdas: 
-    RR = RidgeRegression()
-    RR.initialize(lmbd,eta)
-    RR.calc_w(X_train,Y_train)    
-    RR.gradientDesc(X_train,Y_train, eta, epsilon,n_iter, w_init)
-    RR.predict(b,X_test)
-    l=RR.lossfunc(Y_test)
-    losses=losses.append(l)
-    result = RR.result()
-print(losses)   
+RR.plot2(lambdas,X_train,Y_train,X_test,Y_test)
+
     
-    
-#if __name__ == '__main__':
-    #question2()
-    #question3()
-    #question4()
-    #question5()
+
     
  #%%
 
 #Question6:  
+ 
+ #%%
+ #Question7:
+ 
+ #%%
+#use function for each question 
+ #if __name__ == '__main__':
+    #question2()
+    #question3()
+    #question4()
+    #question5()
  
  
  
